@@ -1,0 +1,22 @@
+{% load staticfiles %}
+<html>
+<head>
+  <title>知乎日报</title>
+  <!--<link href="{% static 'zh_RSS/css/test.css' %}" rel="stylesheet">-->
+</head>
+<body> 
+          {% for eachnews in news %}
+            <!--<p>{{ eachnews.title}}</p>
+            <p>{{ eachnews.url }}</p>
+            <p>{{ eachnews.image }}</p>
+            <p>{{ eachnews.share_url }}</p>
+            <p>{{ eachnews.id }}</p>
+            <p>{{ eachnews.ga_prefix }}</p>
+            <p>{{ eachnews.thumbnail }}</p>
+            <p>===========================</p>-->
+            <div>
+              <a href="{{ eachnews.share_url }}">{{ eachnews.title }}</a>
+              </div>
+          {% endfor %}
+</body>
+</html>

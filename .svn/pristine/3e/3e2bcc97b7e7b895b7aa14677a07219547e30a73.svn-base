@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*- 
+import urllib
+import json
+import cookielib, urllib2
+import string
+import time
+#import httplib2
+from django.template import RequestContext
+from django.shortcuts import render_to_response, redirect
+
+def index(request):
+	url='http://news.at.zhihu.com/api/1.2/news/latest'
+	headers = {'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'}
+	response = urllib2.Request(url, headers = headers)
+	feeddata = urllib2.urlopen(response).read()
+	#data = json.dumps(feeddata, ensure_ascii=False)
+	data = json.loads(feeddata)
+	news = data['news']
+	#for eachnews in news:
+	#	print eachnews['image_source'
+	context = {}
+	context['news'] = news
+	return render_to_response("index.html", context, context_instance=RequestContext(request))
